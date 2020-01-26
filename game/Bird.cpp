@@ -1,49 +1,93 @@
 #include "Bird.h"
-#include "Consts.h"
 
-Bird::Bird()
-	:m_velocity(BIRD_INITIAL_VELOCITY)
+namespace FlappyBird
 {
-	birdTexture.loadFromFile(SPRITE_FILE, sf::IntRect(BIRD_POSITION.x, BIRD_POSITION.y, BIRD_SIZE.x, BIRD_SIZE.y));
-	m_bird.setTexture(birdTexture);
-	m_bird.setPosition(BIRD_INITIAL_POSITION);
-	m_bird.setScale(3, 3);
+	Bird::Bird(GameDataRef data) : _data(data)
+	{
+		_animationIterator = 0;
+		_animationFrames.push_back(_data->assets.GetTexture("Bird Frame 1 Background"));
+		_animationFrames.push_back(_data->assets.GetTexture("Bird Frame 2 Background"));
+		_animationFrames.push_back(_data->assets.GetTexture("Bird Frame 3 Background"));
+		_animationFrames.push_back(_data->assets.GetTexture("Bird Frame 4 Background"));
 
-	FlappyJump.loadFromFile(BIRD_SOUND_JUMP);
-	FlappyPoint.loadFromFile(BIRD_SOUND_POINT);
-	FlappyCollision.loadFromFile(BIRD_SOUND_COLLISION);
-	FlappyJumpSound.setBuffer(FlappyJump);
-	FlappyPointSound.setBuffer(FlappyPoint);
-	FlappyCollisionSound.setBuffer(FlappyCollision);
-}
+		_birdSprite.setTexture(_animationFrames.at(_animationIterator));
+		_birdSprite.setPosition(
+			(_data->window.getSize().x / 4) - (_birdSprite.getGlobalBounds().width / 2),
+			(_data->window.getSize().y / 2) - (_birdSprite.getGlobalBounds().height / 2)
+		);
 
-void Bird::Update(float dt)
-{
-	m_velocity.y += ACCELERATION * dt;
+		_birdState = BIRD_STATE_STILL;
 
-	Move(dt);
-}
+		sf::Vector2f origin = sf::Vector2f(_birdSprite.getGlobalBounds().width / 2, _birdSprite.getGlobalBounds().height / 2);
+		_birdSprite.setOrigin(origin);
+		_rotation = 0;
+	}
 
-void Bird::Draw(sf::RenderWindow & window)
-{
-	window.draw(m_bird);
-}
+	void Bird::Draw()
+	{
+		_data->window.draw(_birdSprite);
+	}
 
-void Bird::SetVelocity(const sf::Vector2f & velocity)
-{
-	m_velocity = velocity;
-	FlappyJumpSound.play();
-}
+	void Bird::Animate(float dt)
+	{
+		if (_clock.getElapsedTime().asSeconds() > BIRD_ANIMATION_DURATION / _animationFrames.size())
+		{
+			if (_animationIterator < _animationFrames.size() - 1)
+			{
+				_animationIterator++;
+			}
+			else
+			{
+				_animationIterator = 0;
+			}
 
-void Bird::Move(float dt)
-{
-	auto pos = m_bird.getPosition();
-	pos += m_velocity * dt;
+			_birdSprite.setTexture(_animationFrames.at(_animationIterator));
+			_clock.restart();
+		}
+	}
 
-	m_bird.setPosition(pos);
-}
+	void Bird::Update(float dt)
+	{
+		if (BIRD_STATE_FALLING == _birdState)
+		{
+			_birdSprite.move(0, GRAVITY * dt);
+			_rotation += ROTATION_SPEED * dt;
+			
+			if (_rotation > 25.0f)
+			{
+				_rotation = 25.0f;
+			}
 
-sf::Vector2f Bird::GetPosition() const
-{
-	return m_bird.getPosition();
+			_birdSprite.setRotation(_rotation);
+		}
+		else if (BIRD_STATE_FLYING == _birdState)
+		{
+			_birdSprite.move(0, -FLYING_SPEED * dt);
+			_rotation -= ROTATION_SPEED * dt;
+
+			if (_rotation < -25.0f)
+			{
+				_rotation = -25.0f;
+			}
+
+			_birdSprite.setRotation(_rotation);
+		}
+
+		if (_movementClock.getElapsedTime().asSeconds() > FLYING_DURATION)
+		{
+			_movementClock.restart();
+			_birdState = BIRD_STATE_FALLING;
+		}
+	}
+
+	void Bird::Tap()
+	{
+		_movementClock.restart();
+		_birdState = BIRD_STATE_FLYING;
+	}
+
+	const sf::Sprite& Bird::GetSprite() const
+	{
+		return _birdSprite;
+	}
 }

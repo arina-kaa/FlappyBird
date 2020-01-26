@@ -1,8 +1,8 @@
+#include <iostream>
 #include "Game.h"
+#include "Definitions.h"
 
 int main()
 {
-	srand(unsigned(time(nullptr)));
-	Game game;
-	game.DoGameLoop();
+	FlappyBird::Game(WINDOW_SIZE.x, WINDOW_SIZE.y, "Flappy Bird");
 }

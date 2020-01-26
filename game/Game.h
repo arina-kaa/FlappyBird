@@ -1,29 +1,35 @@
-#include <SFML/Graphics.hpp>
-#include "Background.h"
-#include "Bird.h"
-#include "Pipes.h"
 #pragma once
 
-class Game
+#include <memory>
+#include <string>
+#include <SFML/Graphics.hpp>
+#include "StateMachine.h"
+#include "AssetManager.h"
+#include "InputManager.h"
+
+namespace FlappyBird
 {
-public:
-	Game();
-	void DoGameLoop();
+	struct GameData
+	{
+		StateMachine machine;
+		sf::RenderWindow window;
+		AssetManager assets;
+		InputManager input;
+	};
 
-private:
-	void Update(float dt);
-	void Render();
+	typedef std::shared_ptr<GameData> GameDataRef;
 
-	void CheckEvents();
-	void CheckKeyboardEvents(const sf::Event & event);
+	class Game
+	{
+	public:
+		Game(int width, int height, std::string title);
 
-	sf::RenderWindow m_window;
-	sf::Clock m_clock;
-	sf::View m_view;
-	
-	Background m_background;
-	Bird m_bird;
-	Pipes m_pipes;
+	private:
+		const float dt = 1.0f / 60.0f;
+		sf::Clock _clock;
 
-	bool isGameStarted = false;
-};
+		GameDataRef _data = std::make_shared<GameData>();
+
+		void Run();
+	};
+}

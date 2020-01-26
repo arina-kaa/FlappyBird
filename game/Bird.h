@@ -1,25 +1,39 @@
-#include <SFML/Graphics.hpp>
-#include <SFML/Audio.hpp>
 #pragma once
 
-class Bird
+#include <SFML/Graphics.hpp>
+#include "Definitions.h"
+#include "Game.h"
+#include <vector>
+
+namespace FlappyBird
 {
-public:
-	Bird();
-	void Update(float dt);
-	void Draw(sf::RenderWindow & window);
+	class Bird
+	{
+	public:
+		Bird(GameDataRef data);
 
-	void SetVelocity(const sf::Vector2f & velocity);
-	sf::Vector2f GetPosition() const;
+		void Draw();
 
-private:
-	void Move(float dt);
+		void Animate(float dt);
 
-	sf::Texture birdTexture;
-	sf::Sprite m_bird;
+		void Update(float dt);
 
-	sf::SoundBuffer FlappyJump, FlappyPoint, FlappyCollision;
-	sf::Sound FlappyJumpSound, FlappyPointSound, FlappyCollisionSound;
+		void Tap();
 
-	sf::Vector2f m_velocity;
-};
+		const sf::Sprite& GetSprite() const;
+
+	private:
+		GameDataRef _data;
+
+		sf::Sprite _birdSprite;
+		std::vector<sf::Texture> _animationFrames;
+
+		unsigned int _animationIterator;
+		sf::Clock _clock;
+
+		sf::Clock _movementClock;
+		int _birdState;
+
+		float _rotation;
+	};
+}
