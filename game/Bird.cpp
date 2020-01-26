@@ -8,6 +8,13 @@ Bird::Bird()
 	m_bird.setTexture(birdTexture);
 	m_bird.setPosition(BIRD_INITIAL_POSITION);
 	m_bird.setScale(3, 3);
+
+	FlappyJump.loadFromFile(BIRD_SOUND_JUMP);
+	FlappyPoint.loadFromFile(BIRD_SOUND_POINT);
+	FlappyCollision.loadFromFile(BIRD_SOUND_COLLISION);
+	FlappyJumpSound.setBuffer(FlappyJump);
+	FlappyPointSound.setBuffer(FlappyPoint);
+	FlappyCollisionSound.setBuffer(FlappyCollision);
 }
 
 void Bird::Update(float dt)
@@ -25,6 +32,7 @@ void Bird::Draw(sf::RenderWindow & window)
 void Bird::SetVelocity(const sf::Vector2f & velocity)
 {
 	m_velocity = velocity;
+	FlappyJumpSound.play();
 }
 
 void Bird::Move(float dt)

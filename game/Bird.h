@@ -1,4 +1,5 @@
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #pragma once
 
 class Bird
@@ -16,6 +17,9 @@ private:
 
 	sf::Texture birdTexture;
 	sf::Sprite m_bird;
+
+	sf::SoundBuffer FlappyJump, FlappyPoint, FlappyCollision;
+	sf::Sound FlappyJumpSound, FlappyPointSound, FlappyCollisionSound;
 
 	sf::Vector2f m_velocity;
 };

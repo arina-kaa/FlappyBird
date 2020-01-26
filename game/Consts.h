@@ -12,13 +12,18 @@ static const sf::Vector2u BACKGROUND_SIZE = { 144, 256 };
 static const sf::Vector2u GROUND_POSITION = { 292, 0 };
 static const sf::Vector2u GROUND_SIZE = { 168, 56 };
 
-static const sf::Vector2u PIPE_POSITION = { 84, 323 };
+static const sf::Vector2u PIPE_POSITION_UP = { 56, 323 };
+static const sf::Vector2u PIPE_POSITION_DOWN = { 84, 323 };
 static const sf::Vector2u PIPE_SIZE = { 26, 160 };
 
 static const sf::Vector2u BIRD_POSITION = { 0, 490 };
 static const sf::Vector2u BIRD_SIZE = { 25, 25 };
 static const sf::Vector2f BIRD_INITIAL_POSITION = { 0.33f * (sf::Vector2f(WINDOW_SIZE).x - BIRD_SIZE.x), 0.5f * (sf::Vector2f(WINDOW_SIZE).y - BIRD_SIZE.y) };
 const sf::Vector2f BIRD_INITIAL_VELOCITY = { 150, 0 };
+
+static const std::string BIRD_SOUND_JUMP = "audio/sfx_wing.wav";
+static const std::string BIRD_SOUND_POINT = "audio/sfx_point.wav";
+static const std::string BIRD_SOUND_COLLISION = "audio/sfx_hit.wav";
 
 constexpr auto JUMP_SPEED = -300.f;
 constexpr auto ACCELERATION = 600.f;
