@@ -1,9 +1,7 @@
 #pragma once
 
 static const sf::Vector2u WINDOW_SIZE = { 768, 1024 };
-static const float SPLASH_STATE_SHOW_TIME = 3.0f;
 
-static const std::string SPLASH_BACKGROUND_FILEPATH = "Resources/res/Splash Background.png";
 static const std::string GAME_BACKGROUND_FILEPATH = "Resources/res/sky.png";
 static const std::string GAME_OVER_BACKGROUND_FILEPATH = "Resources/res/sky.png";
 

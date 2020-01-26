@@ -1,5 +1,5 @@
 #include "Game.h"
-#include "SplashState.h"
+#include "MainMenuState.h"
 #include <stdlib.h>
 #include <time.h>
 
@@ -9,7 +9,7 @@ namespace FlappyBird
 	{
 		srand(time(nullptr));
 		_data->window.create(sf::VideoMode(width, height), title, sf::Style::Close | sf::Style::Titlebar);
-		_data->machine.AddState(StateRef(new SplashState(this->_data)));
+		_data->machine.AddState(StateRef(new MainMenuState(this->_data)));
 
 		this->Run();
 	}
