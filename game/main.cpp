@@ -2,9 +2,7 @@
 
 int main()
 {
-	CGame game;
+	srand(unsigned(time(nullptr)));
+	Game game;
 	game.DoGameLoop();
-
-	return 0;
 }
-

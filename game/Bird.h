@@ -1,15 +1,21 @@
 #include <SFML/Graphics.hpp>
 #pragma once
 
-class CBird
+class Bird
 {
 public:
-	CBird();
-	void Update();
-	void Draw(sf::RenderWindow& window);
-private:
-	sf::Texture birdTexture;
-	sf::Sprite bird;
+	Bird();
+	void Update(float dt);
+	void Draw(sf::RenderWindow & window);
 
-	sf::Vector2f velocity;
+	void SetVelocity(const sf::Vector2f & velocity);
+	sf::Vector2f GetPosition() const;
+
+private:
+	void Move(float dt);
+
+	sf::Texture birdTexture;
+	sf::Sprite m_bird;
+
+	sf::Vector2f m_velocity;
 };
