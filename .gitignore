@@ -13,8 +13,6 @@ bld/
 [Ll]og/
 [Ll]ogs
 
-External Libraries/*
-
 # Visual Studio cache/options directory
 .vs/
 
