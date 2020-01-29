@@ -1,0 +1,100 @@
+﻿  AssetManager.cpp
+  Bird.cpp
+  Collision.cpp
+  Game.cpp
+D:\IPS\2_course\labs_c\flappyBird\game\Game.cpp(10,13): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+  GameOverState.cpp
+  GameState.cpp
+  HUD.cpp
+D:\IPS\2_course\labs_c\flappyBird\game\HUD.cpp(19,96): warning C4244: аргумент: преобразование "T" в "T", возможна потеря данных
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+D:\IPS\2_course\labs_c\flappyBird\game\HUD.cpp(19,65): warning C4244: аргумент: преобразование "T" в "T", возможна потеря данных
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+  InputManager.cpp
+D:\IPS\2_course\labs_c\flappyBird\game\InputManager.cpp(9,135): warning C4244: аргумент: преобразование "T" в "T", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+          and
+          [
+              T=int
+          ]
+D:\IPS\2_course\labs_c\flappyBird\game\InputManager.cpp(9,103): warning C4244: аргумент: преобразование "T" в "T", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+          and
+          [
+              T=int
+          ]
+D:\IPS\2_course\labs_c\flappyBird\game\InputManager.cpp(9,75): warning C4244: аргумент: преобразование "const T" в "T", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+          and
+          [
+              T=int
+          ]
+D:\IPS\2_course\labs_c\flappyBird\game\InputManager.cpp(9,51): warning C4244: аргумент: преобразование "const T" в "T", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+          and
+          [
+              T=int
+          ]
+  Land.cpp
+D:\IPS\2_course\labs_c\flappyBird\game\Land.cpp(26,50): warning C4244: аргумент: преобразование "T" в "T", возможна потеря данных
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+  main.cpp
+  MainMenuState.cpp
+  Pipe.cpp
+D:\IPS\2_course\labs_c\flappyBird\game\Pipe.cpp(16,27): warning C4244: аргумент: преобразование "T" в "float", возможна потеря данных
+          with
+          [
+              T=unsigned int
+          ]
+D:\IPS\2_course\labs_c\flappyBird\game\Pipe.cpp(27,49): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+D:\IPS\2_course\labs_c\flappyBird\game\Pipe.cpp(27,45): warning C4244: аргумент: преобразование "T" в "float", возможна потеря данных
+          with
+          [
+              T=unsigned int
+          ]
+D:\IPS\2_course\labs_c\flappyBird\game\Pipe.cpp(36,45): warning C4244: аргумент: преобразование "T" в "float", возможна потеря данных
+          with
+          [
+              T=unsigned int
+          ]
+D:\IPS\2_course\labs_c\flappyBird\game\Pipe.cpp(46,45): warning C4244: аргумент: преобразование "T" в "float", возможна потеря данных
+          with
+          [
+              T=unsigned int
+          ]
+  StateMachine.cpp
+  Создание кода...
+  flappyBird.vcxproj -> D:\IPS\2_course\labs_c\flappyBird\game\x64\Debug\flappyBird.exe
